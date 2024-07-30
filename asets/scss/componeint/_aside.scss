@@ -1,0 +1,267 @@
+@use "./glopal_rules"as *;
+@use "./theMixien"as *;
+
+aside {
+    grid-area: aside;
+    background-color: $aside-color;
+    height: calc(100vh - 81px);
+
+    @include media('max-width:1368px') {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+    }
+
+    .user__title {
+        @include center();
+        flex-direction: column;
+        text-align: center;
+
+        .container {
+            padding-top: 38px;
+            @include between();
+            flex-direction: column;
+
+            .user__img {
+                margin-bottom: 15px;
+                position: relative;
+
+                &::before {
+                    content: attr(data-count);
+                    @include center();
+                    @include circle(10px);
+                    font-size: 14px;
+                    position: absolute;
+                    padding: 5px;
+                    top: -5px;
+                    right: -5px;
+                    z-index: 2;
+                    background-color: red;
+                    color: $main-color;
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    @include circle(15px);
+                    top: -8.5px;
+                    right: -8.5px;
+                    padding: 4px;
+                    z-index: 4;
+                    background-color: transparent;
+                    animation: notfication 3s infinite ease-in;
+                    border: 2px solid rgba(255, 0, 0, 0);
+                    transform: scale(.6)
+                }
+
+                img {
+                    @include circle(70px);
+                }
+            }
+
+            .title__text {
+                h2 {
+                    color: #000;
+                    font-weight: 500;
+                    margin-bottom: 5px;
+                }
+
+                p {
+                    color: $main-text-color;
+                    display: inline-block;
+                    margin-bottom: 15px;
+                }
+
+                figure {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    span {
+                        @include circle(35px);
+                        position: relative;
+                        overflow: hidden;
+
+                        &:nth-child(1) {
+                            background-color: #00e5ff;
+                        }
+
+                        &:nth-child(2) {
+                            background-color: #64ffda;
+                        }
+
+                        &:nth-child(3) {
+                            background-color: #a1ffcf;
+                        }
+
+                        img {
+                            position: absolute;
+                            bottom: 0;
+                            left: 50%;
+                            transform: translateX(-50%);
+                        }
+                    }
+                }
+            }
+        }
+
+        @include media ("max-width:1368px") {
+            .title__text {
+
+                display: none;
+            }
+
+            .user__img {
+
+                img {
+                    width: 50px !important;
+                    height: 50px !important;
+                }
+            }
+
+            .title__text {
+                display: none;
+            }
+        }
+    }
+
+    ul {
+        width: 100%;
+        margin-top: 30px;
+
+        li {
+            position: relative;
+            display: flex;
+            padding: 15px 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+
+            h3 {
+                font-size: 16px;
+                margin-inline-start: 20px;
+                font-weight: 400;
+            }
+
+            &[data-num]::before {
+                content: attr(data-num);
+                position: absolute;
+                background-color: #1ce3b1;
+                color: #000;
+                right: 0;
+                top: 50%;
+                width: 20px;
+                height: 20px;
+                transform: translateY(-50%);
+                @include center();
+            }
+        }
+
+        .data__list {
+            height: 0;
+            transition: .3s;
+            overflow: hidden;
+
+            span {
+                display: block;
+                padding-left: 30px;
+                text-transform: capitalize;
+                margin-bottom: 20px;
+                color: $main-text-color;
+                cursor: pointer;
+            }
+        }
+
+        li.active {
+            border-left: 3px solid red;
+            background-image: linear-gradient(to right, #fdd8e4, transparent);
+
+            h3 {
+                font-weight: 500;
+            }
+
+            &+.data__list {
+                height: fit-content;
+            }
+        }
+
+        @include media('max-width:1368px') {
+            .data__list {
+                display: none;
+            }
+
+            li {
+                justify-content: center;
+
+                h3 {
+                    display: none;
+                }
+
+                &[data-num]::before {
+                    content: "";
+                    display: none;
+                }
+            }
+        }
+
+    }
+}
+
+@keyframes notfication {
+    20% {
+        transform: scale(1);
+    }
+
+    100% {
+        border: 2px solid red;
+    }
+}
+
+.root.aside_toggle {
+    aside {
+        transition: .3s;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+
+        ul {
+            .data__list {
+                display: none;
+            }
+
+            li {
+                justify-content: center;
+
+                h3 {
+                    display: none;
+                }
+
+                &[data-num]::before {
+                    content: "";
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .user__title {
+
+        .title__text {
+
+            display: none;
+        }
+
+        .user__img {
+
+            img {
+                width: 50px !important;
+                height: 50px !important;
+            }
+        }
+
+        .title__text {
+            display: none;
+        }
+
+    }
+}

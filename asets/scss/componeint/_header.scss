@@ -1,0 +1,167 @@
+@use "./componeint/glopal_rules" as *;
+@use "./theMixien" as * ;
+header {
+  grid-area: hdr;
+  background-color: $second-color;
+  @include center();
+
+
+  .container {
+    nav {
+      @include between();
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      .logo {
+        @include center();
+        position: relative;
+
+        .toggile {
+          @include media(mobile){
+            display: none;
+          }
+          transition: transform 0.3s;
+          display: flex;
+          height: 18px;
+          justify-content: space-between;
+          flex-direction: column;
+          align-items: center;
+          margin-right: 15px;
+          cursor: pointer;
+          & span {
+            width: 20px;
+            height: 3px;
+            background-color: #000;
+            transition: transform 0.3s;
+          }
+        }
+        .toggile.active {
+          transform: translateY(10px);
+          // display: none;
+          & span:nth-child(1) {
+            transform: translateY(0px) rotate(40deg);
+          }
+          & span:nth-child(2) {
+            display: none;
+          }
+          & span:nth-child(3) {
+            transform: translateY(-15px) rotate(-40deg);
+          }
+        }
+        .logo__text {
+          margin-inline-start: 15px;
+
+          .polits {
+            span {
+              display: inline-block;
+              @include circle(8px);
+              margin-right: 5px;
+
+              &:nth-child(1) {
+                background-color: #7c4dff;
+              }
+
+              &:nth-child(2) {
+                background-color: #a8a8a8;
+              }
+
+              &:nth-child(3) {
+                background-color: #1de9b6;
+              }
+            }
+          }
+
+          h2 {
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+
+    .search {
+      position: relative;
+      width: 340px;
+      @include media (mobile){
+        margin-top: 15px;
+        order: 1;
+        width: 100%;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px 15px 10px 40px;
+        text-transform: capitalize;
+        border-radius: 20px;
+        border: none;
+        background-color: $main-color;
+
+        &:focus {
+          outline: none;
+          border: none;
+        }
+      }
+
+      img {
+        position: absolute;
+        top: 50%;
+        left: 3%;
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
+    }
+
+    .userTitle {
+      ul {
+        @include between();
+
+        .user__img {
+          @include circle(35px);
+        }
+
+        .user__hello {
+          font-size: 15px;
+          color: $main-text-color;
+          margin-inline: 8px;
+        }
+
+        li.notfication {
+          position: relative;
+          margin-right: 30px;
+         
+
+          &::before {
+            content: attr(data-count);
+            @include center();
+            @include circle(10px);
+            position: absolute;
+            padding: 4px;
+            top: -8px;
+            right: -8px;
+            z-index: 2;
+            background-color: red;
+            color: $main-color;
+          }
+
+          .notfication_icone {
+            width: 22px;
+            height: 22px;
+            transform: rotate(0);
+            animation: rotate_not 1s infinite  alternate;
+          }
+        }
+
+        li:last-child {
+          cursor: pointer;
+          @include center();
+
+          img {
+            // width: px;
+            height: 6px;
+          }
+        }
+      }
+    }
+  }
+}

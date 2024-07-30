@@ -1,0 +1,44 @@
+@mixin center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@mixin between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+@mixin circle($value){
+    border-radius:50%;
+    width:$value ;
+    height:$value ;
+}
+@mixin grid_cards($min,$gap){
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax($min,1fr));
+    gap: $gap;
+    justify-content: center;
+    align-content: center;
+}
+@mixin media ($type){
+    @if $type == "mobile" {
+        @media (max-width:768px) {
+            @content;
+        }
+    }@else if $type == "small" {
+        @media (min-width:768px) and (max-width:991px) {
+            @content;
+        }
+    }@else if $type == "medium" {
+        @media (min-width:991px) and (max-width:1199px) {
+            @content;
+        }
+    }@else if $type == "large" {
+        @media (min-width:1199px) {
+            @content;
+        }
+    }
+    @media (#{$type}) {
+        @content;
+    }
+}

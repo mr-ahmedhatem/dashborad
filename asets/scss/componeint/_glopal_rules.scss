@@ -1,0 +1,81 @@
+$main-color:#f1f5f8;
+$second-color:#ffff;
+$main-text-color:#0101009c;
+$main-content-color:#f1f5f8;
+$aside-color:#eef0f2;
+*{
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 0;
+    margin: 0;
+    list-style: none ;
+}
+body {
+    background-color: $main-color;
+    scroll-behavior: smooth;
+}
+.container{
+    padding: 20px;
+    width: 100%;
+}
+.root {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "hdr hdr" "aside main";
+
+}
+%btn{
+    color: #fff;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: none ;
+    background-color: #00d67e;
+    cursor: pointer;
+}
+@for $i from 1 through 5 {
+    .fs-#{10 + ($i * 2)}{
+        font-size: 10px + ($i * 2);
+    }
+}
+.root.aside_toggle{
+    grid-template-columns: 5% 95%;
+
+}
+@media (max-width:768px) {
+    .root{
+        grid-template-columns: 15% 85% !important;
+    }
+    
+}
+@keyframes rotate_not{
+    0%{
+        transform: rotate(10deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+@keyframes polits_catch {
+to{
+ transform: rotate(180deg);
+}
+}
+@keyframes scale-1 {
+to{
+ transform: scale(1);
+}
+}
+@keyframes opacity {
+to{
+    opacity: 1;
+}
+}
+
+.show__content {
+    display: block !important;
+    animation: opacity .3s 1 ease-in forwards;
+}
+.content__showLins {
+    grid-template-columns: 98% !important;
+}
